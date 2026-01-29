@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #edf2f7;
+            color: #667eea;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-description {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.5rem;
+            background: #f7fafc;
+            color: #4a5568;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Projects</h1>
+            <p class="subtitle">Explore my latest work and creations</p>
+        </header>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search projects...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="web">Web</button>
+                <button class="filter-btn" data-category="mobile">Mobile</button>
+                <button class="filter-btn" data-category="design">Design</button>
+                <button class="filter-btn" data-category="other">Other</button>
+            </div>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+
+    <script>
+        // Sample projects data - Replace with your actual projects
+        const projects = [
+            {
+                title: "E-Commerce Platform",
+                category: "web",
+                description: "A full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
+                tags: ["React", "Node.js", "MongoDB", "Stripe"],
+                icon: "🛒",
+                demoUrl: "#",
+                githubUrl: "#"
+            },
+            {
+                title: "Task Manager App",
+                category: "mobile",
+                description: "Cross-platform mobile app for task management with real-time sync and notifications.",
+                tags: ["React Native", "Firebase", "Redux"],
+                icon: "📱",
+                demoUrl: "#",
+                githubUrl: "#"
+            },
+            {
+                title: "Portfolio Website",
+                category: "web",
+                description: "Modern, responsive portfolio website with smooth animations and dark mode support.",
+                tags: ["HTML", "CSS", "JavaScript", "GSAP"],
+                icon: "💼",
+                demoUrl: "#",
+                githubUrl: "#"
+            },
+            {
+                title: "Weather Dashboard",
+                category: "web",
+                description: "Real-time weather dashboard with forecasts, maps, and location-based alerts.",
+                tags: ["Vue.js", "Weather API", "Charts.js"],
+                icon: "🌤️",
+                demoUrl: "#",
+                githubUrl: "#"
+            },
+            {
+                title: "Fitness Tracker",
+                category: "mobile",
+                description: "Mobile fitness app with workout tracking, progress analytics, and social features.",
+                tags: ["Flutter", "Dart", "SQLite"],
+                icon: "💪",
+                demoUrl: "#",
+                githubUrl: "#"
+            },
+            {
+                title: "Brand Identity",
+                category: "design",
+                description: "Complete brand identity design including logo, color palette, and style guide.",
+                tags: ["Figma", "Illustrator", "Branding"],
+                icon: "🎨",
+                demoUrl: "#",
+                githubUrl: null
+            },
+            {
+                title: "Chat Application",
+                category: "web",
+                description: "Real-time chat application with group messaging, file sharing, and video calls.",
+                tags: ["Socket.io", "WebRTC", "Express"],
+                icon: "💬",
+                demoUrl: "#",
+                githubUrl: "#"
+            },
+            {
+                title: "Data Visualization Tool",
+                category: "other",
+                description: "Interactive data visualization tool for analyzing and presenting complex datasets.",
+                tags: ["D3.js", "Python", "Pandas"],
+                icon: "📊",
+                demoUrl: "#",
+                githubUrl: "#"
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            
+            const filtered = projects.filter(project => {
+                const matchesCategory = currentFilter === 'all' || project.category === currentFilter;
+                const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                    project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                    project.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-results">No projects found. Try adjusting your filters.</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(project => `
+                <div class="project-card">
+                    <div class="project-image">${project.icon}</div>
+                    <div class="project-content">
+                        <h3 class="project-title">${project.title}</h3>
+                        <span class="project-category">${project.category}</span>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="project-links">
+                            ${project.demoUrl ? `<a href="${project.demoUrl}" class="project-link">🔗 View Demo</a>` : ''}
+                            ${project.githubUrl ? `<a href="${project.githubUrl}" class="project-link">💻 GitHub</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.category;
+                renderProjects();
+            });
+        });
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderProjects();
+        });
+
+        // Initial render
+        renderProjects();
+    </script>
+</body>
+</html>
