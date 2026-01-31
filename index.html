@@ -748,21 +748,27 @@
                         ${project.specs.map(spec => `<span class="modal-spec">${spec}</span>`).join('')}
                     </div>
                 </div>
+
+                ${project.details.objective ? `
+                    <div class="modal-section">
+                        <h3>Project Objective</h3>
+                        <p>${project.details.objective}</p>
+                    </div>
+                ` : ''}
                 
-                <div class="modal-section">
-                    <h3>Project Objective</h3>
-                    <p>${project.details.objective}</p>
-                </div>
+                ${project.details.approach ? `
+                    <div class="modal-section">
+                        <h3>Approach</h3>
+                        <p>${project.details.approach}</p>
+                    </div>
+                ` : ''}
                 
-                <div class="modal-section">
-                    <h3>Approach</h3>
-                    <p>${project.details.approach}</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Outcome</h3>
-                    <p>${project.details.outcome}</p>
-                </div>
+                ${project.details.outcome ? `
+                    <div class="modal-section">
+                        <h3>Outcome</h3>
+                        <p>${project.details.outcome}</p>
+                    </div>
+                ` : ''}
             `;
             
             // Show the modal and prevent background scrolling
