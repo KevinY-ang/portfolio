@@ -15,8 +15,37 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #ffffff;
             min-height: 100vh;
-            padding: 2rem;
+            padding: 0;
             color: #000000;
+        }
+
+        .hero-section {
+            background-image: url('images/CHE181_A2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-content {
+            padding: 2rem;
         }
 
         .container {
@@ -30,16 +59,22 @@
             position: relative;
         }
 
+        .title-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            border: 2px solid #000000;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
         h1 {
             font-size: 3rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
             font-weight: 700;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.7;
-        }
+
 
         .about-section {
             max-width: 800px;
@@ -420,6 +455,18 @@
         }
 
         @media (max-width: 768px) {
+            .hero-section {
+                padding: 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .title-box {
+                padding: 1.5rem 2rem;
+            }
+
             h1 {
                 font-size: 2rem;
             }
@@ -443,31 +490,41 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Kevin's Engineering Portfolio</h1>
-        </header>
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="container">
+                <header>
+                    <div class="title-box">
+                        <h1>Kevin's Engineering Portfolio</h1>
+                    </div>
+                </header>
 
-        <section class="about-section">
-            <div class="about-avatar">
-                <img src="images/portrait.jpg" alt="Kevin Portrait" width="180px" height="150px">
+                <section class="about-section">
+                    <div class="about-avatar">
+                        <img src="images/portrait.jpg" alt="Kevin Portrait" width="180px" height="150px">
+                    </div>
+                    <h2>About Me</h2>
+                    <p>
+                        Hi!
+                    </p>
+                    <p> 
+                        I'm a chemical engineer passionate about bringing ideas to life through coding, 
+                        CAD design, and hands-on prototyping. With experience in a variety of 
+                        industry processes, I specialize in creating functional, innovative solutions to 
+                        engineering challenges.
+                    </p>
+                    <p>
+                        I thrive in hands-on, fast-learning environments where ideas evolve through iteration.
+                        From building and testing prototypes to refining designs in CAD or code, I enjoy the process 
+                        of translating theory into working systems and continuously improving them through experimentation.
+                    </p>
+                </section>
             </div>
-            <h2>About Me</h2>
-            <p>
-                Hi!
-            </p>
-            <p> 
-                I'm a chemical engineer passionate about bringing ideas to life through coding, 
-                CAD design, and hands-on prototyping. With experience in a variety of 
-                industry processes, I specialize in creating functional, innovative solutions to 
-                engineering challenges.
-            </p>
-            <p>
-                I thrive in hands-on, fast-learning environments where ideas evolve through iteration.
-                From building and testing prototypes to refining designs in CAD or code, I enjoy the process 
-                of translating theory into working systems and continuously improving them through experimentation.
-            </p>
-        </section>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
 
         <div class="controls">
             <div class="filter-buttons">
@@ -484,6 +541,7 @@
         <footer>
             <p>Last updated: <span id="lastModified"></span></p>
         </footer>
+        </div>
     </div>
 
     <div class="modal" id="projectModal">
