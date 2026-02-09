@@ -218,19 +218,7 @@
             font-size: 0.85rem;
         }
 
-        .view-details {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: #000000;
-            color: #ffffff;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
 
-        .project-card:hover .view-details {
-            background: #333333;
-        }
 
         .no-results {
             text-align: center;
@@ -297,7 +285,7 @@
         }
 
         .modal-image, .modal-image-carousel {
-            height: 300px;
+            height: 450px;
             background: #ffffff;
             border: 2px solid #000000;
             border-radius: 8px;
@@ -352,7 +340,7 @@
         }
 
         .pdf-download-btn {
-            display: inline-block;
+            display: block;
             padding: 0.75rem 1.5rem;
             background: #000000;
             color: #ffffff;
@@ -361,6 +349,8 @@
             font-weight: 600;
             margin-bottom: 1.5rem;
             transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
         }
 
         .pdf-download-btn:hover {
@@ -807,7 +797,6 @@
                             <div class="project-specs">
                                 ${project.specs.map(spec => `<span class="spec">${spec}</span>`).join('')}
                             </div>
-                            <span class="view-details">📋 View Full Details</span>
                         </div>
                     </div>
                 `;
