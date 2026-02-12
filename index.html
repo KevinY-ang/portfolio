@@ -409,10 +409,22 @@
             font-size: 1.5rem;
             z-index: 2;
             transition: all 0.3s ease;
+            opacity: 0;
         }
 
         .carousel-nav:hover {
             background: #ffffff;
+        }
+
+        /* Show arrows on project card hover */
+        .project-card:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        /* Modal arrows always visible */
+        .modal-image-carousel .carousel-nav,
+        .modal .carousel-nav {
+            opacity: 1;
         }
 
         .carousel-prev {
@@ -421,6 +433,27 @@
 
         .carousel-next {
             right: 10px;
+        }
+
+        /* Carousel slide container for animation */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-image-carousel,
+        .modal-image-carousel {
+            overflow: hidden;
         }
 
         .carousel-dots {
@@ -705,11 +738,13 @@
                 const isImage = img => img.startsWith('data:image') || img.includes('/') || img.includes('.');
                 
                 this.container.innerHTML = `
-                    ${this.images.map((img, i) => 
-                        `<div style="display: ${i === 0 ? 'flex' : 'none'}; width: 100%; height: 100%; align-items: center; justify-content: center;" class="carousel-slide">
-                            ${isImage(img) ? `<img src="${img}" style="width: 100%; height: 100%; object-fit: contain;">` : img}
-                        </div>`
-                    ).join('')}
+                    <div class="carousel-track">
+                        ${this.images.map((img) => 
+                            `<div class="carousel-slide">
+                                ${isImage(img) ? `<img src="${img}" style="width: 100%; height: 100%; object-fit: contain;">` : img}
+                            </div>`
+                        ).join('')}
+                    </div>
                     ${this.images.length > 1 ? `
                         <button class="carousel-nav carousel-prev">‹</button>
                         <button class="carousel-nav carousel-next">›</button>
@@ -719,6 +754,8 @@
                     ` : ''}
                 `;
 
+                this.track = this.container.querySelector('.carousel-track');
+                
                 if (this.images.length > 1) {
                     this.container.querySelector('.carousel-prev').addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -748,13 +785,11 @@
             }
 
             updateSlides() {
-                const slides = this.container.querySelectorAll('.carousel-slide');
+                if (this.track) {
+                    this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+                }
+                
                 const dots = this.container.querySelectorAll('.carousel-dot');
-                
-                slides.forEach((slide, i) => {
-                    slide.style.display = i === this.currentIndex ? 'flex' : 'none';
-                });
-                
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === this.currentIndex);
                 });
