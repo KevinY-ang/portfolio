@@ -375,22 +375,42 @@
             font-weight: 600;
         }
 
-        .pdf-download-btn {
-            display: block;
+        .file-buttons-container {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pdf-download-btn, .excel-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 0.75rem 1.5rem;
             background: #000000;
             color: #ffffff;
-            border-radius: 8px;
             text-decoration: none;
+            border-radius: 8px;
             font-weight: 600;
-            margin-bottom: 1.5rem;
             transition: all 0.3s ease;
+            border: 2px solid #000000;
+            flex: 1;
+            min-width: 150px;
+            justify-content: center;
             text-align: center;
-            width: 100%;
         }
 
         .pdf-download-btn:hover {
             background: #333333;
+        }
+
+        .excel-download-btn {
+            background: #1D6F42;
+            border-color: #1D6F42;
+        }
+
+        .excel-download-btn:hover {
+            background: #155a35;
         }
 
         .carousel-nav {
@@ -522,6 +542,14 @@
             
             .modal-content {
                 margin: 1rem auto;
+            }
+            
+            .file-buttons-container {
+                flex-direction: column;
+            }
+
+            .pdf-download-btn, .excel-download-btn {
+                width: 100%;
             }
         }
     </style>
@@ -707,6 +735,7 @@
                 fullDescription: "Piping and Instrumentation Diagram (P&ID) created for CHE 181, modelling an existing nitrogen tank located at the University of Waterloo. The diagram was produced by following online documentation to translate the real piping, valves, instrumentation, and connections into a standardised P&ID format.",
                 icon: "images/CHE181_P&ID.png",
                 pdfUrl: "pdfs/CHE181_P&ID.pdf",
+                excelUrl: "pdfs/E6 Nitrogen Tank P&ID-Engineering Items Kevin.xlsx",
                 specs: ["AutoCAD", "Assignment", "Technical Drawing"],
                 details: {
                     objective: "",
@@ -827,6 +856,14 @@
             const useCarousel = project.images && project.images.length > 0;
             const displayImages = useCarousel ? project.images : [project.icon];
             
+            // Create file buttons HTML if either PDF or Excel URL exists
+            const fileButtonsHTML = (project.pdfUrl || project.excelUrl) ? `
+                <div class="file-buttons-container">
+                    ${project.pdfUrl ? `<a href="${project.pdfUrl}" class="pdf-download-btn" target="_blank">📄 View Full PDF</a>` : ''}
+                    ${project.excelUrl ? `<a href="${project.excelUrl}" class="excel-download-btn" target="_blank">📊 View Excel</a>` : ''}
+                </div>
+            ` : '';
+            
             modalBody.innerHTML = `
                 <div class="${useCarousel ? 'modal-image-carousel' : 'modal-image'}" id="modalImageContainer">
                     ${!useCarousel && (project.icon.startsWith('data:image') || project.icon.includes('/') || project.icon.includes('.')) 
@@ -834,7 +871,7 @@
                         : !useCarousel ? project.icon : ''}
                 </div>
                 
-                ${project.pdfUrl ? `<a href="${project.pdfUrl}" class="pdf-download-btn" target="_blank">📄 View Full PDF</a>` : ''}
+                ${fileButtonsHTML}
                 
                 <h2 class="modal-title">${project.title}</h2>
                 <span class="project-category">${project.category}</span>
