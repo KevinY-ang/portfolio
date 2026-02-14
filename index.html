@@ -939,9 +939,14 @@
         function renderProjects() {
             const grid = document.getElementById('projectsGrid');
             
-            const filtered = projects.filter(project => 
-                currentFilter === 'all' || project.category === currentFilter
-            );
+            const filtered = projects.filter(project => {
+                if (currentFilter === 'all') return true;
+                if (currentFilter === 'Other') {
+                    // "Other" includes everything except the main categories
+                    return !['SolidWorks', 'AutoCAD', 'ASPEN'].includes(project.category);
+                }
+                return project.category === currentFilter;
+            });
         
             if (filtered.length === 0) {
                 grid.innerHTML = '<div class="no-results">No projects found in this category.</div>';
