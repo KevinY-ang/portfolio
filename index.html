@@ -736,6 +736,7 @@
                 icon: "images/CHE181_P&ID.png",
                 pdfUrl: "pdfs/CHE181_P&ID.pdf",
                 excelUrl: "pdfs/E6 Nitrogen Tank P&ID-Engineering Items Kevin.xlsx",
+                excelName: "Engineering Items",
                 specs: ["AutoCAD", "Assignment", "Technical Drawing"],
                 details: {
                     objective: "",
@@ -859,8 +860,8 @@
             // Create file buttons HTML if either PDF or Excel URL exists
             const fileButtonsHTML = (project.pdfUrl || project.excelUrl) ? `
                 <div class="file-buttons-container">
-                    ${project.pdfUrl ? `<a href="${project.pdfUrl}" class="pdf-download-btn" target="_blank">📄 View Full PDF</a>` : ''}
-                    ${project.excelUrl ? `<a href="${project.excelUrl}" class="excel-download-btn" target="_blank">📊 View Excel</a>` : ''}
+                    ${project.pdfUrl ? `<a href="${project.pdfUrl}" class="pdf-download-btn" target="_blank">📄 ${project.pdfName || 'View Full PDF'}</a>` : ''}
+                    ${project.excelUrl ? `<a href="${project.excelUrl}" class="excel-download-btn" target="_blank">📊 ${project.excelName || 'View Excel'}</a>` : ''}
                 </div>
             ` : '';
             
