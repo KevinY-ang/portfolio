@@ -703,7 +703,7 @@
                 }
             },
             {
-                title: "Simulation of CO2 Capture Absorption Process",
+                title: "CO2 Capture Absorption Process Simulation",
                 category: "ASPEN",
                 description: "Simulation for CHE 290 - Modelling Carbon Capture and Sequestration (CCS) technology using ASPEN Plus",
                 fullDescription: "Simulated a complete carbon capture and sequestration (CCS) system in ASPEN Plus, modeling the CO2 removal process from power plant flue gas using MEA solvent absorption.",
@@ -719,6 +719,25 @@
                         "Analyzed annual operating costs for steam-based solvent regeneration and estimated carbon tax savings from captured CO2",
                         ],
                     outcome: "Successfully modeled a complete CCS system in ASPEN Plus similar to commercial facilities operating in Canada. Gained proficiency in process simulation software and developed skills in evaluating both technical performance and economic viability by analyzing energy consumption, operating costs, and carbon tax savings."
+                }
+            },
+            {
+                title: "Liquefied Natural Gas Process Simulation",
+                category: "ASPEN",
+                description: "Simulation for CHE 290 - ASPEN Plus simulation of a full LNG liquefaction process",
+                fullDescription: "Simulated a complete Liquefied Natural Gas process built in ASPEN Plus. The process models a 2-stage natural gas compression system with flash separation followed by a dual stream mixed refrigerant heat exchanger to cool compressed natural gas from 25°C down to -155°C. Simulation outputs were used to analyze energy consumption, LNG composition, and the effect of nitrogen content in the feed stream.",
+                images: [],
+                specs: ["ASPEN", "Project", "Simulation", "Thermodynamics"],
+                details: {
+                    objective: "Design and simulate a full LNG liquefaction process in ASPEN Plus, modeling compression, flash separation, and cryogenic heat exchange to produce a high pressure liquid natural gas product at 55 bar and -155°C, and estimate total energy consumption of the process.",
+                    approach: [
+                        "Built a 2-stage natural gas compression flowsheet in ASPEN Plus using the Peng-Robinson equation of state, with adiabatic compressors (74% and 72% efficiency) and intercoolers reducing the stream to 25°C after each stage",
+                        "Incorporated a flash drum between compression stages to remove condensed heavier hydrocarbons and water before the second compression stage",
+                        "Extended the flowsheet to include a dual stream brazed aluminum heat exchanger (BAHX) cooling the compressed NG stream from 25°C to -155°C using a mixed refrigerant loop containing N2, methane, ethane, and n-butane",
+                        "Modeled the closed refrigerant loop with an adiabatic compressor (72% efficiency), condenser, and expansion valve, validating loop closure by confirming the dummy outlet stream matched specified inlet conditions",
+                        "Ran a sensitivity analysis varying N2 flowrate in the feed from 0.01 to 0.10 kmol/s to assess impacts on final LNG composition, energy content, and liquefaction plant energy requirements"
+                    ],
+                    outcome: "Successfully converged the full LNG process simulation in ASPEN Plus, producing liquefied natural gas at the target conditions of -155°C and 55 bar. Simulation outputs included net compressor work, condenser duty, composite temperature curves for the heat exchanger, and final LNG composition. Sensitivity analysis confirmed that nitrogen content in the feed meaningfully affects both product quality and process energy demand."
                 }
             },
             {
