@@ -684,6 +684,25 @@
                 }
             },
             {
+                title: "Pokemon 151 Pack Expected Return Analysis",
+                category: "Other",
+                description: "Group Project - Monte Carlo simulation and hypothesis testing on Scarlet & Violet 151 booster pack return rates",
+                fullDescription: "Group statistical analysis of the expected monetary return from opening Scarlet & Violet 151 Pokemon booster packs. Responsible for data collection in Excel and building the Monte Carlo simulation in Python, using card pricing data from Collectr and published pull rates to model pack openings and support formal hypothesis testing.",
+                images: [],
+                specs: ["Python", "Excel", "Statistics", "Project"],
+                details: {
+                    objective: "Determine whether the expected monetary return from opening 8 Scarlet & Violet 151 booster packs is less than 70% of the packs' total cost, using simulation and formal hypothesis testing.",
+                    approach: [
+                        "Sourced card pricing data from Collectr and pull rate probabilities from published 151 pull rate data, entering both into Excel with each card assigned to its corresponding pack slot",
+                        "Constructed six probability columns in Excel, one per card slot, reflecting which card types and rarities could legally appear in each position",
+                        "Built a Monte Carlo simulation in Python using random.choices to draw cards slot-by-slot according to their assigned probabilities and sum each simulated pack's total value",
+                        "Ran 10,000 simulated pack openings to generate a large sample at no financial cost, computing a return ratio (card value / pack cost) for each simulated pack",
+                        "Performed a one-sample left-tailed t-test (a = 0.05) on the return ratios and computed a 95% upper-bound confidence interval to support the conclusion"
+                    ],
+                    outcome: "The null hypothesis (u = 0.7) was rejected with a t-statistic of -43.97 and a p-value effectively equal to zero. The 95% confidence interval placed the expected return ratio at or below 0.506, providing strong statistical evidence that the expected return from opening Scarlet & Violet 151 packs is well under 70% of pack cost, confirming the existence of a significant happiness tax on pack opening."
+                }
+            },
+            {
                 title: "Simulation of CO2 Capture Absorption Process",
                 category: "ASPEN",
                 description: "Simulation for CHE 290 - Modelling Carbon Capture and Sequestration (CCS) technology using ASPEN Plus",
