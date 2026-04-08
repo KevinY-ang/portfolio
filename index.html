@@ -63,15 +63,18 @@
         header {
             text-align: center;
             margin-bottom: 3rem;
-            position: relative;
+            width: 100%; 
         }
 
         .title-box {
             background: rgba(255, 255, 255, 0.95);
             padding: 1.5rem 2.5rem;
-            border-radius: 12px;
-            border: 2px solid #000000;
-            display: inline-block;
+            display: block; 
+            border-top: 2px solid #000000; 
+            border-bottom: 2px solid #000000;
+            border-left: none;
+            border-right: none;
+            border-radius: 0; 
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
@@ -569,14 +572,14 @@
 <body>
     <div class="hero-section">
         <div class="hero-content">
+            <header>
+                <div class="title-box">
+                    <h1>Kevin's Engineering Portfolio</h1>
+                    <p class="subtitle">Chemical Engineering | CAD | Simulation | Code</p>
+                </div>
+            </header>
+            
             <div class="container">
-                <header>
-                    <div class="title-box">
-                        <h1>Kevin's Engineering Portfolio</h1>
-                        <p class="subtitle">Chemical Engineering | CAD | Simulation | Code</p>
-                    </div>
-                </header>
-
                 <section class="about-section">
                     <div class="about-avatar">
                         <img src="images/portrait.jpg" alt="Kevin Portrait" width="180px" height="150px">
