@@ -25,16 +25,18 @@
             --header-bg: #ffffff;
             --modal-bg: #ffffff;
             --filter-btn-bg: transparent;
+            --filter-active-bg: #000000;
         }
         
         body.dark-mode {
             --bg-color: #0d1b2a;
-            --text-color: #ffffff;
-            --card-bg:#1a3a5c;
+            --text-color: #e0eaf4;
+            --card-bg: #1a3a5c;
             --about-bg: #1e4976;
             --header-bg: #0d1b2a;
             --modal-bg: #112236;
             --filter-btn-bg: #0f2035;
+            --filter-active-bg: #2e7bc4;
         }
 
         .round-theme-btn {
@@ -43,7 +45,7 @@
             right: 2rem;
             width: 60px;
             height: 60px;
-            border-radius: 50%; /* Makes it a perfect circle */
+            border-radius: 50%;
             background: var(--header-bg);
             color: var(--text-color);
             border: 2px solid var(--text-color);
@@ -53,26 +55,14 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 9999; /* Ensures it stays above all other content */
+            z-index: 9999;
             transition: all 0.3s ease;
         }
         
         .round-theme-btn:hover {
-            transform: scale(1.1); /* Slight pop effect on hover */
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            transform: scale(1.1);
         }
 
-        *::-webkit-scrollbar {
-            display: none;
-        }
-        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: var(--bg-color);
@@ -87,7 +77,7 @@
             background-size: 102.5%;
             background-position: 42.5% 25%;
             background-repeat: no-repeat;
-            padding: 0 0 6rem 0; /* Top: 0, Right: 0, Bottom: 2rem, Left: 0 */
+            padding: 0 0 6rem 0;
             position: relative;
             background-attachment: fixed;
         }
@@ -128,7 +118,7 @@
             padding: 1.5rem 2.5rem;
             display: block; 
             border-top: none; 
-            border-bottom: 2px solid #000000;
+            border-bottom: 2px solid var(--text-color);
             border-left: none;
             border-right: none;
             border-radius: 0; 
@@ -149,23 +139,41 @@
             letter-spacing: 0.05em;
         }
 
-        .about-section {
-            max-width: 800px;
+        /* Wrapper for side-by-side hero boxes */
+        .hero-boxes {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 6rem;
+            max-width: 1100px;
             margin: 0 auto 4rem auto;
+        }
+
+        /* About section */
+        .about-section {
+            flex: 1;
             padding: 2rem;
-            border: 2px solid #000000;
+            border: 2px solid var(--text-color);
             border-radius: 12px;
-            text-align: center;
-            background: var(--about-bg); border: 2px solid var(--text-color);
-            /*background: #d1eaf0;*/
+            background: var(--about-bg);
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .about-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .about-avatar {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 3px solid #000000;
-            margin: 0 auto 1.5rem auto;
+            border: 3px solid var(--text-color);
+            margin: 0 0 1.5rem 0;
             background: #ffffff;
             overflow: hidden;
             display: flex;
@@ -184,40 +192,120 @@
             font-size: 4rem;
         }
 
-        .about-section h2 {
+        .about-left h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
-        .about-section p {
+        .about-left p {
             line-height: 1.8;
             font-size: 1.1rem;
             opacity: 0.8;
             margin-bottom: 1rem;
         }
 
+        /* Project preview window - separate box on the right */
+        .about-right {
+            flex: 1;
+            border: 2px solid var(--text-color);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            min-height: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-right:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+        }
+
+        /* Hover overlay */
+        .about-right-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+        }
+
+        .about-right:hover .about-right-overlay {
+            opacity: 1;
+        }
+
+        .about-right-overlay span {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .about-right-overlay .arrow-down {
+            color: #ffffff;
+            font-size: 2rem;
+            animation: bounce 1.2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        .preview-carousel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .preview-carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .preview-carousel img.active {
+            opacity: 1;
+        }
+
         .about-links {
             display: flex;
             gap: 1rem;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
             margin-top: 1.5rem;
         }
 
         .about-link {
             padding: 0.5rem 1rem;
-            border: 2px solid #000000;
+            border: 2px solid var(--text-color);
             border-radius: 6px;
             text-decoration: none;
-            color: #000000;
+            color: var(--text-color);
             font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .about-link:hover {
-            background: #000000;
-            color: #ffffff;
+            background: var(--text-color);
+            color: var(--bg-color);
         }
 
         .controls {
@@ -237,9 +325,9 @@
 
         .filter-btn {
             padding: 0.75rem 1.5rem;
-            border: 2px solid #000000;
+            border: 2px solid var(--text-color);
             border-radius: 8px;
-            border: 2px solid var(--text-color); color: var(--text-color); background: var(--filter-btn-bg);
+            background: var(--filter-btn-bg);
             color: var(--text-color);
             font-weight: 600;
             cursor: pointer;
@@ -251,8 +339,9 @@
         }
 
         .filter-btn.active {
-            background: #000000;
+            background: var(--filter-active-bg, #000000);
             color: #ffffff;
+            border-color: var(--filter-active-bg, #000000);
         }
 
         .projects-grid {
@@ -263,12 +352,12 @@
         }
 
         .project-card {
-            border: 2px solid #000000;
+            border: 2px solid var(--text-color);
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid var(--text-color); background: var(--card-bg);
+            background: var(--card-bg);
         }
 
         .project-card:hover {
@@ -283,7 +372,7 @@
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            border-bottom: 2px solid #000000;
+            border-bottom: 2px solid var(--text-color);
             position: relative;
         }
 
@@ -322,12 +411,10 @@
 
         .spec {
             padding: 0.4rem 0.8rem;
-            border: 1px solid #000000;
+            border: 1px solid var(--text-color);
             border-radius: 4px;
             font-size: 0.85rem;
         }
-
-
 
         .no-results {
             text-align: center;
@@ -375,8 +462,9 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            border: 2px solid #000000;
-            background: #ffffff;
+            border: 2px solid var(--text-color);
+            background: var(--modal-bg);
+            color: var(--text-color);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -387,8 +475,8 @@
         }
 
         .modal-close:hover {
-            background: #000000;
-            color: #ffffff;
+            background: var(--text-color);
+            color: var(--bg-color);
         }
 
         .modal-body {
@@ -445,7 +533,7 @@
 
         .modal-spec {
             padding: 0.5rem 1rem;
-            border: 2px solid #000000;
+            border: 2px solid var(--text-color);
             border-radius: 6px;
             font-weight: 600;
         }
@@ -511,12 +599,10 @@
             background: #ffffff;
         }
 
-        /* Show arrows on project card hover */
         .project-card:hover .carousel-nav {
             opacity: 1;
         }
 
-        /* Modal arrows always visible */
         .modal-image-carousel .carousel-nav,
         .modal .carousel-nav {
             opacity: 1;
@@ -530,7 +616,6 @@
             right: 10px;
         }
 
-        /* Carousel slide container for animation */
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
@@ -578,7 +663,7 @@
         footer {
             text-align: center;
             padding: 2rem 0;
-            border-top: 2px solid #000000;
+            border-top: 2px solid var(--text-color);
             margin-top: 3rem;
             opacity: 0.6;
         }
@@ -605,6 +690,14 @@
             
             .subtitle {
                 font-size: 1rem;
+            }
+
+            .about-section {
+                flex-direction: column;
+            }
+
+            .about-right {
+                min-height: 220px;
             }
             
             .projects-grid {
@@ -640,22 +733,30 @@
             </header>
             
             <div class="container">
-                <section class="about-section">
-                    <div class="about-avatar">
-                        <img src="images/portrait.jpg" alt="Kevin Portrait" width="180px" height="150px">
+                <div class="hero-boxes">
+                    <section class="about-section">
+                        <div class="about-left">
+                            <div class="about-avatar">
+                                <img src="images/portrait.jpg" alt="Kevin Portrait" width="180px" height="150px">
+                            </div>
+                            <h2>About Me</h2>
+                            <p> 
+                                I'm a chemical engineer passionate about bringing ideas to life through coding, CAD design, and hands-on prototyping. While I'm currently building up more personal projects, I'm actively seeking opportunities to gain deeper technical experience. I thrive in fast-learning environments where ideas evolve through iteration, and I enjoy translating theory into working systems while continuously improving them through experimentation.
+                            </p>
+                        </div>
+                    </section>
+                    <div class="about-right" onclick="document.getElementById('main-content-anchor').scrollIntoView({behavior: 'smooth'})">
+                        <div class="preview-carousel" id="previewCarousel"></div>
+                        <div class="about-right-overlay">
+                            <span>View my projects</span>
+                            <div class="arrow-down">↓</div>
+                        </div>
                     </div>
-                    <h2>About Me</h2>
-                    <p> 
-                        I’m a chemical engineer passionate about bringing ideas to life through coding, CAD design, and hands-on prototyping. While I’m currently building up more personal projects, I’m actively seeking opportunities to gain deeper technical experience. I thrive in fast-learning environments where ideas evolve through iteration, and I enjoy translating theory into working systems while continuously improving them through experimentation.
-                        <!--I'm a chemical engineer passionate about bringing ideas to life through coding, 
-                        CAD design, and hands-on prototyping. I thrive in fast-learning environments where ideas evolve through iteration.
-                        From building and testing prototypes to refining designs in CAD or code, I enjoy the process 
-                        of translating theory into working systems and continuously improving them through experimentation.-->
-                    </p>
-                </section>
+                </div>
             </div>
         </div>
     </div>
+    <div id="main-content-anchor"></div>
 
     <div class="main-content">
         <div class="container">
@@ -690,6 +791,51 @@
         let currentFilter = 'all';
 
         const projects = [
+            {
+                title: "Card Holder",
+                category: "SolidWorks",
+                description: "Personal Project - A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer",
+                fullDescription: "A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer. Measurements for the holder were taken with a caliper directly from the card, and the SolidWorks draft was completed within 10 minutes. The entire process from initial concept to a finished 3D printed part took just under an hour, making it a quick and satisfying way to dial in printer configurations and settings.",
+                images: ["images/Holder.jpg","images/Holder_Card.jpeg"],
+                specs: ["SolidWorks", "Project", "Hobby"],
+                details: {
+                    objective: "",
+                    approach: "",
+                    outcome: ""
+                }
+            },
+            {
+                title: "Pinion Gear Draft",
+                category: "SolidWorks",
+                description: "Personal Project - Gear designed from scratch for V2 of generator project",
+                fullDescription: "Custom gear design created from first principles for the second iteration of the electromagnetic generator project. Calculated gear parameters including tooth count, pitch diameter, module, and pressure angle to achieve the desired gear ratio for improved rotation speed of the magnetic wheel.",
+                images: ["images/Gear.png", "images/GearPrinted.jpeg"],
+                specs: ["SolidWorks", "Project", "Prototype"],
+                details: {
+                    objective: "Design a gear to interface with the existing generator assembly while providing mechanical advantage for more consistent rotation and higher power output.",
+                    approach: ["Designed gear based on calculated parameters including tooth count, pitch diameter, module, and pressure angle",
+                                "Modeled the curved tooth profile using parametric equations to accurately represent an involute curve",
+                                "Chose to create the gear from scratch rather than using SolidWorks' pre-existing gear tools",
+                                "Gained complete control over design specifications and customization that standard tools did not accommodate",
+                                "Developed new skills in parametric equation modeling and advanced CAD techniques through hands-on learning"],
+                    outcome: "Successfully designed gear with clean intersection between meshing teeth, validating the calculated parameters. The next step involves integrating and meshing the gear with the current generator design to validate the calculated gear ratio and assess performance improvements in power generation."
+                }
+            },
+            {
+                title: "Electromagnetic Generator",
+                category: "SolidWorks",
+                description: "Personal Project - A venture into electromagnetic principles and the production of electricity",
+                fullDescription: "Initial prototype of an electromagnetic generator designed to explore electromagnetic principles and electricity generation through hands-on experimentation. While output power is currently low, the primary goal is to validate the theory and eventually power an LED. Future iterations (V2) will include a more robust system with a gear-driven mechanism for rotating the magnetic wheel and improved connections for LED/output testing.",
+                images: ["images/GeneratorV1.png", "images/GeneratorV1Pic.jpeg"],
+                specs: ["SolidWorks", "Project", "Prototype"],
+                details: {
+                    objective: "Build a functional electromagnetic generator from first principles to better understand energy generation, with the goal of producing enough power to light an LED.",
+                    approach: ["Designed the initial prototype in SolidWorks focusing on proof-of-concept rather than optimisation",
+                               "Built system using a rotating magnetic wheel to induce current in stationary coils",
+                               "Assembled and tested prototype to validate electromagnetic induction principles through hands-on experimentation"],
+                    outcome: "Successfully generated measurable electrical output, confirming the electromagnetic principles. Current output is insufficient to power a LED. Plans for V2 include implementing a gear system for the magnetic wheel rotation and improved electrical connections for more reliable power generation and output measurement."
+                }
+            },
             {
                 title: "Pokemon Card Inventory",
                 category: "Other",
@@ -810,51 +956,6 @@
                     outcome: ""
                 }
             },
-                        {
-                title: "Card Holder",
-                category: "SolidWorks",
-                description: "Personal Project - A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer",
-                fullDescription: "A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer. Measurements for the holder were taken with a caliper directly from the card, and the SolidWorks draft was completed within 10 minutes. The entire process from initial concept to a finished 3D printed part took just under an hour, making it a quick and satisfying way to dial in printer configurations and settings.",
-                images: ["images/Holder.jpg","images/Holder_Card.jpeg"],
-                specs: ["SolidWorks", "Project", "Hobby"],
-                details: {
-                    objective: "",
-                    approach: "",
-                    outcome: ""
-                }
-            },
-            {
-                title: "Pinion Gear Draft",
-                category: "SolidWorks",
-                description: "Personal Project - Gear designed from scratch for V2 of generator project",
-                fullDescription: "Custom gear design created from first principles for the second iteration of the electromagnetic generator project. Calculated gear parameters including tooth count, pitch diameter, module, and pressure angle to achieve the desired gear ratio for improved rotation speed of the magnetic wheel.",
-                images: ["images/Gear.png", "images/GearPrinted.jpeg"],
-                specs: ["SolidWorks", "Project", "Prototype"],
-                details: {
-                    objective: "Design a gear to interface with the existing generator assembly while providing mechanical advantage for more consistent rotation and higher power output.",
-                    approach: ["Designed gear based on calculated parameters including tooth count, pitch diameter, module, and pressure angle",
-                                "Modeled the curved tooth profile using parametric equations to accurately represent an involute curve",
-                                "Chose to create the gear from scratch rather than using SolidWorks' pre-existing gear tools",
-                                "Gained complete control over design specifications and customization that standard tools did not accommodate",
-                                "Developed new skills in parametric equation modeling and advanced CAD techniques through hands-on learning"],
-                    outcome: "Successfully designed gear with clean intersection between meshing teeth, validating the calculated parameters. The next step involves integrating and meshing the gear with the current generator design to validate the calculated gear ratio and assess performance improvements in power generation."
-                }
-            },
-            {
-                title: "Electromagnetic Generator",
-                category: "SolidWorks",
-                description: "Personal Project - A venture into electromagnetic principles and the production of electricity",
-                fullDescription: "Initial prototype of an electromagnetic generator designed to explore electromagnetic principles and electricity generation through hands-on experimentation. While output power is currently low, the primary goal is to validate the theory and eventually power an LED. Future iterations (V2) will include a more robust system with a gear-driven mechanism for rotating the magnetic wheel and improved connections for LED/output testing.",
-                images: ["images/GeneratorV1.png", "images/GeneratorV1Pic.jpeg"],
-                specs: ["SolidWorks", "Project", "Prototype"],
-                details: {
-                    objective: "Build a functional electromagnetic generator from first principles to better understand energy generation, with the goal of producing enough power to light an LED.",
-                    approach: ["Designed the initial prototype in SolidWorks focusing on proof-of-concept rather than optimisation",
-                               "Built system using a rotating magnetic wheel to induce current in stationary coils",
-                               "Assembled and tested prototype to validate electromagnetic induction principles through hands-on experimentation"],
-                    outcome: "Successfully generated measurable electrical output, confirming the electromagnetic principles. Current output is insufficient to power a LED. Plans for V2 include implementing a gear system for the magnetic wheel rotation and improved electrical connections for more reliable power generation and output measurement."
-                }
-            },
             /*
             {
                 title: "Hydrogen Analysis",
@@ -970,7 +1071,6 @@
             const useCarousel = project.images && project.images.length > 0;
             const displayImages = useCarousel ? project.images : [project.icon];
             
-            // Create file buttons HTML if either PDF or Excel URL exists
             const fileButtonsHTML = (project.pdfUrl || project.excelUrl) ? `
                 <div class="file-buttons-container">
                     ${project.pdfUrl ? `<a href="${project.pdfUrl}" class="pdf-download-btn" target="_blank"> ${project.pdfName || 'View Full PDF'}</a>` : ''}
@@ -1055,7 +1155,6 @@
             const filtered = projects.filter(project => {
                 if (currentFilter === 'all') return true;
                 if (currentFilter === 'Other') {
-                    // "Other" includes everything except the main categories
                     return !['SolidWorks', 'AutoCAD', 'ASPEN'].includes(project.category);
                 }
                 return project.category === currentFilter;
@@ -1120,21 +1219,42 @@
         });
 
         const themeToggle = document.getElementById('themeToggle');
-                const body = document.body;
-                
-                // Apply saved preference on load
-                if (localStorage.getItem('theme') === 'dark') {
-                    body.classList.add('dark-mode');
-                    themeToggle.textContent = '☀️';
-                }
-                
-                themeToggle.addEventListener('click', () => {
-                    body.classList.toggle('dark-mode');
-                    const isDark = body.classList.contains('dark-mode');
-                    themeToggle.textContent = isDark ? '☀️' : '🌙';
-                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                });
+        const body = document.body;
         
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        function initPreviewCarousel() {
+            const container = document.getElementById('previewCarousel');
+            const allImages = projects.flatMap(p => p.images || []).filter(Boolean);
+            if (!container || allImages.length === 0) return;
+
+            allImages.forEach((src, i) => {
+                const img = document.createElement('img');
+                img.src = src;
+                if (i === 0) img.classList.add('active');
+                container.appendChild(img);
+            });
+
+            let current = 0;
+            setInterval(() => {
+                const imgs = container.querySelectorAll('img');
+                imgs[current].classList.remove('active');
+                current = (current + 1) % imgs.length;
+                imgs[current].classList.add('active');
+            }, 5000);
+        }
+
+        initPreviewCarousel();
         renderProjects();
         document.getElementById('lastModified').textContent = document.lastModified;
     </script>
