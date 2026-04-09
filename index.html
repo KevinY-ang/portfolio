@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin's Engineering Portfolio</title>
+    <title>Kevin's Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -767,7 +767,7 @@
                 <button class="filter-btn" data-category="SolidWorks">SolidWorks</button>
                 <button class="filter-btn" data-category="AutoCAD">AutoCAD</button>
                 <button class="filter-btn" data-category="ASPEN">ASPEN</button>
-                <button class="filter-btn" data-category="Other">Other</button>
+                <button class="filter-btn" data-category="Other">Excel</button>
             </div>
         </div>
 
@@ -792,72 +792,8 @@
 
         const projects = [
             {
-                title: "Card Holder",
-                category: "SolidWorks",
-                description: "Personal Project - A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer",
-                fullDescription: "A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer. Measurements for the holder were taken with a caliper directly from the card, and the SolidWorks draft was completed within 10 minutes. The entire process from initial concept to a finished 3D printed part took just under an hour, making it a quick and satisfying way to dial in printer configurations and settings.",
-                images: ["images/Holder.jpg","images/Holder_Card.jpeg"],
-                specs: ["SolidWorks", "Project", "Hobby"],
-                details: {
-                    objective: "",
-                    approach: "",
-                    outcome: ""
-                }
-            },
-            {
-                title: "Pinion Gear Draft",
-                category: "SolidWorks",
-                description: "Personal Project - Gear designed from scratch for V2 of generator project",
-                fullDescription: "Custom gear design created from first principles for the second iteration of the electromagnetic generator project. Calculated gear parameters including tooth count, pitch diameter, module, and pressure angle to achieve the desired gear ratio for improved rotation speed of the magnetic wheel.",
-                images: ["images/Gear.png", "images/GearPrinted.jpeg"],
-                specs: ["SolidWorks", "Project", "Prototype"],
-                details: {
-                    objective: "Design a gear to interface with the existing generator assembly while providing mechanical advantage for more consistent rotation and higher power output.",
-                    approach: ["Designed gear based on calculated parameters including tooth count, pitch diameter, module, and pressure angle",
-                                "Modeled the curved tooth profile using parametric equations to accurately represent an involute curve",
-                                "Chose to create the gear from scratch rather than using SolidWorks' pre-existing gear tools",
-                                "Gained complete control over design specifications and customization that standard tools did not accommodate",
-                                "Developed new skills in parametric equation modeling and advanced CAD techniques through hands-on learning"],
-                    outcome: "Successfully designed gear with clean intersection between meshing teeth, validating the calculated parameters. The next step involves integrating and meshing the gear with the current generator design to validate the calculated gear ratio and assess performance improvements in power generation."
-                }
-            },
-            {
-                title: "Electromagnetic Generator",
-                category: "SolidWorks",
-                description: "Personal Project - A venture into electromagnetic principles and the production of electricity",
-                fullDescription: "Initial prototype of an electromagnetic generator designed to explore electromagnetic principles and electricity generation through hands-on experimentation. While output power is currently low, the primary goal is to validate the theory and eventually power an LED. Future iterations (V2) will include a more robust system with a gear-driven mechanism for rotating the magnetic wheel and improved connections for LED/output testing.",
-                images: ["images/GeneratorV1.png", "images/GeneratorV1Pic.jpeg"],
-                specs: ["SolidWorks", "Project", "Prototype"],
-                details: {
-                    objective: "Build a functional electromagnetic generator from first principles to better understand energy generation, with the goal of producing enough power to light an LED.",
-                    approach: ["Designed the initial prototype in SolidWorks focusing on proof-of-concept rather than optimisation",
-                               "Built system using a rotating magnetic wheel to induce current in stationary coils",
-                               "Assembled and tested prototype to validate electromagnetic induction principles through hands-on experimentation"],
-                    outcome: "Successfully generated measurable electrical output, confirming the electromagnetic principles. Current output is insufficient to power a LED. Plans for V2 include implementing a gear system for the magnetic wheel rotation and improved electrical connections for more reliable power generation and output measurement."
-                }
-            },
-            {
-                title: "Pokemon Card Inventory",
-                category: "Other",
-                description: "Personal Project - Organized Excel spreadsheets with sorting capabilities to track card inventory",
-                fullDescription: "Comprehensive Excel-based inventory tracking system designed for managing a Pokémon Trading Card collection with real-time price checking capabilities and advanced filtering for efficient vending at card shows.",
-                images: ["images/Inventory.png", "images/InventoryProcessed.png"],
-                specs: ["Excel", "Project"],
-                details: {
-                    objective: "Develop a comprehensive Excel-based system to manage a personal Pokémon Trading Card collection, enabling efficient inventory tracking, transaction monitoring, and real-time price verification while vending at card shows.",
-                    approach: [
-                        "Created a multi-column spreadsheet with 13 key data fields capturing complete card and transaction information",
-                        "Organized and tracked over 800 transactions, enabling instant inventory lookup during live sales",
-                        "Implemented standardized categories for card type (Raw, Sealed, Graded), condition (NM, MP, HP, PSA), and transaction type (Trade In, Trade Out, Sold, Bought)",
-                        "Integrated Power Query to develop a public spreadsheet displaying card availability while maintaining private transaction data",
-                        "Developed pricing formulas for rapid market value lookup during card shows"
-                    ],
-                    outcome: "Successfully created a functional inventory management system tracking 1000+ major cards across over 800 transactions. The system provides instant access to card availability, pricing data, and trading partner records, streamlining the vending process and enabling data-driven decisions at card shows."
-                }
-            },
-            {
                 title: "Pokemon 151 Pack Expected Return Analysis",
-                category: "Other",
+                category: "Excel",
                 description: "Group Project - Monte Carlo simulation and hypothesis testing on Scarlet & Violet 151 booster pack return rates",
                 fullDescription: "Group statistical analysis of the expected monetary return from opening Scarlet & Violet 151 Pokemon booster packs. Responsible for data collection in Excel and building the Monte Carlo simulation in Python, using card pricing data from Collectr and published pull rates to model pack openings and support formal hypothesis testing.",
                 images: ["images/151Excel.png"],
@@ -872,6 +808,25 @@
                         "Performed a one-sample left-tailed t-test (a = 0.05) on the return ratios and computed a 95% upper-bound confidence interval to support the conclusion"
                     ],
                     outcome: "The null hypothesis (u = 0.7) was rejected with a t-statistic of -43.97 and a p-value effectively equal to zero. The 95% confidence interval placed the expected return ratio at or below 0.506, providing strong statistical evidence that the expected return from opening Scarlet & Violet 151 packs is well under 70% of pack cost, confirming the existence of a significant happiness tax on pack opening."
+                }
+            },
+            {
+                title: "Pokemon Card Inventory",
+                category: "Excel",
+                description: "Personal Project - Organized Excel spreadsheets with sorting capabilities to track card inventory",
+                fullDescription: "Comprehensive Excel-based inventory tracking system designed for managing a Pokémon Trading Card collection with real-time price checking capabilities and advanced filtering for efficient vending at card shows.",
+                images: ["images/Inventory.png", "images/InventoryProcessed.png"],
+                specs: ["Excel", "Project"],
+                details: {
+                    objective: "Develop a comprehensive Excel-based system to manage a personal Pokémon Trading Card collection, enabling efficient inventory tracking, transaction monitoring, and real-time price verification while vending at card shows.",
+                    approach: [
+                        "Created a multi-column spreadsheet with 13 key data fields capturing complete card and transaction information",
+                        "Organized and tracked over 800 transactions, enabling instant inventory lookup during live sales",
+                        "Implemented standardized categories for card type (Raw, Sealed, Graded), condition (NM, MP, HP, PSA), and transaction type (Trade In, Trade Out, Sold, Bought)",
+                        "Integrated Power Query to develop a public spreadsheet displaying card availability while maintaining private transaction data",
+                        "Developed pricing formulas for rapid market value lookup during card shows"
+                    ],
+                    outcome: "Successfully created a functional inventory management system tracking 1000+ major cards across over 800 transactions. The system provides instant access to card availability, pricing data, and trading partner records, streamlining the vending process and enabling data-driven decisions at card shows."
                 }
             },
             {
@@ -954,6 +909,51 @@
                     objective: "",
                     approach: "",
                     outcome: ""
+                }
+            },
+            {
+                title: "Card Holder",
+                category: "SolidWorks",
+                description: "Personal Project - A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer",
+                fullDescription: "A simple card holder designed in SolidWorks as one of the first tests on a new 3D printer. Measurements for the holder were taken with a caliper directly from the card, and the SolidWorks draft was completed within 10 minutes. The entire process from initial concept to a finished 3D printed part took just under an hour, making it a quick and satisfying way to dial in printer configurations and settings.",
+                images: ["images/Holder.jpg","images/Holder_Card.jpeg"],
+                specs: ["SolidWorks", "Project", "Hobby"],
+                details: {
+                    objective: "",
+                    approach: "",
+                    outcome: ""
+                }
+            },
+            {
+                title: "Pinion Gear Draft",
+                category: "SolidWorks",
+                description: "Personal Project - Gear designed from scratch for V2 of generator project",
+                fullDescription: "Custom gear design created from first principles for the second iteration of the electromagnetic generator project. Calculated gear parameters including tooth count, pitch diameter, module, and pressure angle to achieve the desired gear ratio for improved rotation speed of the magnetic wheel.",
+                images: ["images/Gear.png", "images/GearPrinted.jpeg"],
+                specs: ["SolidWorks", "Project", "Prototype"],
+                details: {
+                    objective: "Design a gear to interface with the existing generator assembly while providing mechanical advantage for more consistent rotation and higher power output.",
+                    approach: ["Designed gear based on calculated parameters including tooth count, pitch diameter, module, and pressure angle",
+                                "Modeled the curved tooth profile using parametric equations to accurately represent an involute curve",
+                                "Chose to create the gear from scratch rather than using SolidWorks' pre-existing gear tools",
+                                "Gained complete control over design specifications and customization that standard tools did not accommodate",
+                                "Developed new skills in parametric equation modeling and advanced CAD techniques through hands-on learning"],
+                    outcome: "Successfully designed gear with clean intersection between meshing teeth, validating the calculated parameters. The next step involves integrating and meshing the gear with the current generator design to validate the calculated gear ratio and assess performance improvements in power generation."
+                }
+            },
+            {
+                title: "Electromagnetic Generator",
+                category: "SolidWorks",
+                description: "Personal Project - A venture into electromagnetic principles and the production of electricity",
+                fullDescription: "Initial prototype of an electromagnetic generator designed to explore electromagnetic principles and electricity generation through hands-on experimentation. While output power is currently low, the primary goal is to validate the theory and eventually power an LED. Future iterations (V2) will include a more robust system with a gear-driven mechanism for rotating the magnetic wheel and improved connections for LED/output testing.",
+                images: ["images/GeneratorV1.png", "images/GeneratorV1Pic.jpeg"],
+                specs: ["SolidWorks", "Project", "Prototype"],
+                details: {
+                    objective: "Build a functional electromagnetic generator from first principles to better understand energy generation, with the goal of producing enough power to light an LED.",
+                    approach: ["Designed the initial prototype in SolidWorks focusing on proof-of-concept rather than optimisation",
+                               "Built system using a rotating magnetic wheel to induce current in stationary coils",
+                               "Assembled and tested prototype to validate electromagnetic induction principles through hands-on experimentation"],
+                    outcome: "Successfully generated measurable electrical output, confirming the electromagnetic principles. Current output is insufficient to power a LED. Plans for V2 include implementing a gear system for the magnetic wheel rotation and improved electrical connections for more reliable power generation and output measurement."
                 }
             },
             /*
